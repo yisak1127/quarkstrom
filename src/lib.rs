@@ -615,8 +615,8 @@ where
             if let Some(monitor) = event_loop.primary_monitor() {
                 let size = monitor.size();
                 let position = PhysicalPosition::new(
-                    (size.width - width) as i32 / 2,
-                    (size.height - height) as i32 / 2,
+                    (size.width.wrapping_sub(width)) as i32 / 2,
+                    (size.height.wrapping_sub(height)) as i32 / 2,
                 );
                 builder = builder.with_position(position);
             }
