@@ -744,7 +744,8 @@ impl Grid {
 
         for i in 0..=2 {
             for j in 0..=2 {
-                let (mut x, mut y) = (x + i - 1, y + j - 1);
+                let (mut x, mut y) = (x.wrapping_add(i).wrapping_sub(1),
+                y.wrapping_add(j).wrapping_sub(1),);
                 let mut offset = Vec2::zero();
                 if x == usize::MAX {
                     x = self.resolution - 1;
